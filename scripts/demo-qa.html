@@ -1,0 +1,29 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Animation coverage check</title><body><main><h1>Animation coverage check</h1><button id="start">Check all 391 cells</button><p id="progress" role="status">Ready</p><section id="scene" style="position:relative;width:590px;height:288px"><section id="root" class="cell-root"></section></section><pre id="result"></pre></main><script type="module">
+import '@wokwi/elements';
+import '../vendor/velxio/frontend/src/components/velxio-components/registerAll';
+import '../vendor/velxio/frontend/src/components/velxio-components/Esp32Element';
+import '../vendor/velxio/frontend/src/components/velxio-components/Nrf52840DkElement';
+import {mountCell} from '../vendor/velxio/demo/cells/mount';
+const cells=import.meta.glob('../vendor/velxio/demo/cells/tasks/*/*.ts');
+const frame=()=>new Promise(resolve=>requestAnimationFrame(resolve));
+document.querySelector('#start').onclick=async()=>{
+ document.querySelector('#start').disabled=true;
+ let passed=0;const failures=[];
+ for(const [path,load] of Object.entries(cells)){
+  const parts=path.split('/'); const task=parts.pop().slice(0,-3),board=parts.pop();
+  document.querySelector('#progress').textContent=`${passed+failures.length} / ${Object.keys(cells).length} · ${board}/${task}`;
+  try {
+   const [module,circuit]=await Promise.all([load(),fetch(`/demo/circuits/${board}/${task}.json`).then(r=>{if(!r.ok)throw Error(r.status);return r.json()})]);
+   const cell=module.default;
+   const mounted=await mountCell(document.querySelector('#root'),circuit,cell);
+   for(const fraction of [0,.1,.25,.5,.75,.99]){mounted.seek(Math.floor((cell.duration-1)*fraction));await frame();}
+   const root=document.querySelector('#root');
+   if(!Number.isFinite(Number(root.dataset.scale)) || Number(root.dataset.scale)<=0)throw Error('Invalid scene scale');
+   for(const el of root.querySelectorAll('.cell-part'))if(!el.getBoundingClientRect().width)throw Error(`Invisible part ${el.dataset.id}`);
+   passed++;
+  } catch(error){failures.push({board,task,error:String(error)});}
+ }
+ document.querySelector('#progress').textContent=`Complete · ${passed} passed · ${failures.length} failed`;
+ document.querySelector('#result').textContent=JSON.stringify(failures,null,2);
+};
+</script></body></html>

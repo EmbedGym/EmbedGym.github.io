@@ -1,0 +1,167 @@
+/* Cell look: light mode, for a white page. */
+
+.cell-root {
+  /* The site's self-hosted fonts, so every OS lays text out alike. */
+  --sans: 'Inter', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --ink: #1f2937;
+  --muted: #6b7280;
+  --accent: #1a73e8;
+  --warn: #d97706;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 590px;
+  height: 288px;
+  transform-origin: 0 0;
+  overflow: hidden;
+  border-radius: 18px;
+}
+.cell-frame {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1.5px solid #e2e6ec;
+}
+.cell-content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+}
+.cell-part {
+  position: absolute;
+  filter: drop-shadow(0 2px 3px rgba(15, 23, 42, 0.22));
+}
+/* DynamicComponent's wrapper and label box, in the editor's font, so a part
+   turns about the same centre as on the canvas. */
+.cell-wrapper {
+  padding: 4px;
+  border: 2px solid transparent;
+  font: 400 16px/1.5 var(--font-sans);
+  transform-origin: center center;
+}
+.cell-label {
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+  padding: 3px 8px;
+  font-size: 11px;
+  white-space: nowrap;
+  visibility: hidden;
+}
+/* Decor's own SVG overlays use .cell-air the way the wire layer does. */
+.cell-wires,
+.cell-air {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  overflow: visible;
+  pointer-events: none;
+}
+.cell-wire-halo,
+.cell-wire {
+  fill: none;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+/* A thin dark edge, like a jumper's insulation; bus activity lights it blue. */
+.cell-wire-halo {
+  --b: var(--busy, 0);
+  stroke-width: calc(6.2px + 5px * var(--b));
+  stroke: rgb(calc(15 + 45 * var(--b)) calc(23 + 137 * var(--b)) calc(42 + 213 * var(--b)) / calc(0.28 + 0.4 * var(--b)));
+}
+.cell-wire {
+  stroke-width: 4.2;
+}
+.cell-junction {
+  stroke: rgba(15, 23, 42, 0.28);
+  stroke-width: 1;
+}
+.cell-glow {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  margin: -60px 0 0 -60px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle closest-side, rgba(var(--rgb), 0.55) 0%, rgba(var(--rgb), 0.2) 45%, transparent 100%);
+}
+.cell-error {
+  position: absolute;
+  inset: 0;
+  padding: 16px;
+  color: #b42318;
+  font: 12px/1.4 ui-monospace, Menlo, monospace;
+  white-space: pre-wrap;
+  background: #fef3f2;
+  border-radius: 18px;
+}
+
+/* kit.ts: serial monitor, USB cable, finger. */
+.k-serial {
+  position: absolute;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1.5px solid #cfd6df;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+}
+.k-serial-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  height: 34px;
+  padding: 0 14px;
+  border-bottom: 1px solid #e3e8ee;
+  font: 600 18px var(--sans);
+  color: var(--muted);
+}
+.k-serial-note {
+  font: 500 16px var(--mono);
+}
+.k-serial-window {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 34px;
+  /* 10px less the panel's two 1.5px borders, which sit inside its height: a
+     panel 34 + rows x row + 10 tall holds exactly that many rows. */
+  bottom: 7px;
+  overflow: hidden;
+}
+.k-serial-lines {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.k-serial-line {
+  padding: 0 14px;
+  font: 600 var(--k-font)/1.36 var(--mono);
+  color: var(--ink);
+  white-space: pre;
+  background: rgba(26, 115, 232, calc(0.12 * var(--fresh)));
+}
+.k-serial[data-wrap] .k-serial-line {
+  white-space: pre-wrap;
+  padding-left: calc(14px + 2ch);
+  text-indent: -2ch;
+}
+.k-serial-line:last-child {
+  color: color-mix(in srgb, var(--accent) calc(100% * var(--fresh)), var(--ink));
+}
+.k-cable path {
+  fill: none;
+  stroke: #8b95a1;
+  stroke-width: 9;
+  stroke-linecap: round;
+}
+.k-cable rect {
+  fill: #6b7280;
+}

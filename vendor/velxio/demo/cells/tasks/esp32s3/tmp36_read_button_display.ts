@@ -1,0 +1,59 @@
+import type { Cell } from '../../cell';
+import { finger, pressFinger } from '../../decor/finger';
+import { COOL, DURATION, PRESSES, SHOWN, WARM, airAt, screen } from '../mega/tmp36_read_button_display';
+
+// | board   | esp32-s3                                    |
+// | LCD bus | w-38-RS, w-39-E, w-40-D4 … w-42-D6, w-21-D7 |
+// | button  | w-12-BTN, w-12-RPD (GPIO12)                 |
+// | TMP36   | w-9-Vout (GPIO9)                            |
+
+type Lcd = HTMLElement & { text: string };
+type Button = HTMLElement & { pressed: boolean };
+
+const LCD_BUS = ['w-38-RS', 'w-39-E', 'w-40-D4', 'w-41-D5', 'w-42-D6', 'w-21-D7'];
+// Cell coordinates: the TMP36 spans x -210..-150, y 130..206 left of the board; its 3V3
+// lead loops round it at x -230, so the badge sits left of that.
+const BADGE = { x: -450, y: 140, w: 190, h: 76 };
+
+const cell: Cell = {
+  duration: DURATION,
+  decor: {
+    html: `
+      <style>
+        .c-tbe-air {
+          position: absolute; left: ${BADGE.x}px; top: ${BADGE.y}px; width: ${BADGE.w}px; height: ${BADGE.h}px;
+          box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+          background: #f8fafc; border: 1.5px solid #cfd6df; border-radius: 12px;
+          box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+          font: 600 36px var(--mono);
+          color: color-mix(in srgb, #e8590c calc(100% * var(--k, 0)), #1c7ed6);
+        }
+      </style>
+      <div class="c-tbe-air"></div>
+      ${finger('f', { length: 48 })}`,
+    bounds: [BADGE.x, BADGE.y, BADGE.x + BADGE.w, BADGE.y + BADGE.h],
+  },
+  run(t, view) {
+    const air = airAt(t);
+    const badge = view.q<HTMLElement>('.c-tbe-air');
+    badge.style.setProperty('--k', String(air.k));
+    badge.textContent = `${air.c.toFixed(1)}°C`;
+
+    const btn = view.box('BTN');
+    const pressing = pressFinger(view, 'f', t, { x: btn.x + btn.w / 2, y: btn.y + btn.h / 2 + 4 }, PRESSES);
+    view.part<Button>('BTN').pressed = pressing;
+    if (pressing) {
+      view.glowWire('w-12-BTN', 1);
+      view.glowWire('w-12-RPD', 1);
+    }
+
+    const text = screen(SHOWN.filter((s) => s <= t).length === 1 ? COOL : WARM);
+    view.part<Lcd>('LCD1').text = text;
+  },
+  activity: [
+    { wires: ['w-9-Vout'], at: SHOWN.map((s) => s - 4) },
+    { wires: LCD_BUS, at: SHOWN.map((s) => s - 2) },
+  ],
+};
+
+export default cell;

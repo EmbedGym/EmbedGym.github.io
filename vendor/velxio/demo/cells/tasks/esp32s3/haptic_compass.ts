@@ -1,0 +1,73 @@
+import { clamp } from '../../anim';
+import type { Cell } from '../../cell';
+import { USB, serialPanel, showSerial } from '../../kit';
+import { BLUE_TINT } from '../../decor/common';
+import { dial, setDial } from '../../decor/dial';
+import { setVibration, vibration } from '../../decor/vibration';
+import { DURATION, EFFECT_MS, READS, headingAt } from '../mega/haptic_compass';
+import { compassPrints, sectorEntries } from '../uno/haptic_compass';
+
+type Haptic = HTMLElement & { vibrating: boolean };
+
+const BOARD = 'esp32-s3';
+const MAG_WIRES = ['w-38-MAG1-SDA', 'w-39-MAG1-SCL'];
+const HAP_WIRES = ['w-38-HAP1-SDA', 'w-39-HAP1-SCL'];
+// app_main polls every POLL_MS = 20 and prints every 50th poll.
+const POLL_MS = 20;
+
+const ENTRIES = sectorEntries(POLL_MS);
+const PRINTS = compassPrints(ENTRIES);
+const sectorAt = (t: number) => [...ENTRIES].reverse().find((e) => e.t <= t)?.sector ?? ENTRIES[ENTRIES.length - 1].sector;
+
+// The console socket is at the board's bottom end and 3V3 at its top, so the card
+// holds the whole board and its scale is low: the monitor and panel are set large.
+const FONT = 34;
+const SERIAL = { x: -530, y: 352, w: 520, h: 34 + FONT * 1.36 + 10 };
+const ZOOM = 1.5;
+const PANEL = { x: 140, y: 166, w: 220, h: 170 };
+// The breakout is turned 90°, so the motor disc is on its right and the arcs go above and below it.
+const MOTOR = { dx: 91.2, dy: 48 };
+
+const cell: Cell = {
+  duration: DURATION,
+  decor: {
+    html: `
+      ${serialPanel('out', SERIAL, { note: '115200', cableTo: USB.esp32s3, fontSize: FONT })}
+      <div style="position:absolute;left:${PANEL.x}px;top:${PANEL.y}px;width:${PANEL.w}px;height:${PANEL.h}px;transform:scale(${ZOOM});transform-origin:0 0;background:#f8fafc;border:1.5px solid #cfd6df;border-radius:12px;box-shadow:0 2px 6px rgba(15,23,42,0.08)">
+        <div style="position:absolute;left:12px;top:6px;font:600 24px var(--sans);color:var(--muted);white-space:nowrap">MAG1 heading</div>
+        <div style="position:absolute;left:58px;top:106px">${dial('heading', { pointer: 'needle', sectors: true, hysteresis: 5 })}</div>
+        <div class="c-hce-sector" style="position:absolute;left:118px;top:58px;padding:0 8px;border-radius:8px;font:700 32px/44px var(--mono);color:var(--accent);background:${BLUE_TINT}"></div>
+        <div class="c-hce-effect" style="position:absolute;left:118px;top:116px;padding:0 6px;border-radius:8px;font:700 26px/36px var(--sans);color:#fff;background:var(--accent)"></div>
+      </div>
+      <div class="c-hce-motor" style="position:absolute;transform:rotate(90deg)">${vibration('motor')}</div>`,
+    bounds: [SERIAL.x, SERIAL.y, PANEL.x + PANEL.w * ZOOM, SERIAL.y + SERIAL.h],
+  },
+  activity: [
+    { wires: MAG_WIRES, at: [...READS, ...ENTRIES.map((e) => e.t)] },
+    { wires: HAP_WIRES, at: ENTRIES.map((e) => e.t + 2) },
+  ],
+  run(t, view) {
+    const sector = sectorAt(t);
+    setDial(view, 'heading', { angle: headingAt(t), sector });
+    view.q<HTMLElement>('.c-hce-sector').textContent = sector;
+
+    // The effect's name stays up for a second after it plays; the motor runs for its 100 ms.
+    const entry = [...ENTRIES].reverse().find((e) => e.t <= t);
+    const since = entry ? t - entry.t : Infinity;
+    const label = view.q<HTMLElement>('.c-hce-effect');
+    label.textContent = entry?.effect ?? '';
+    label.style.opacity = String(since < 1000 ? 1 - clamp((since - 700) / 300) : 0);
+
+    const buzzing = since < EFFECT_MS;
+    view.part<Haptic>('HAP1').vibrating = buzzing;
+    const hap = view.box('HAP1');
+    const motor = view.q<HTMLElement>('.c-hce-motor');
+    motor.style.left = `${hap.x + MOTOR.dx}px`;
+    motor.style.top = `${hap.y + MOTOR.dy}px`;
+    setVibration(view, 'motor', buzzing ? 1 : 0);
+
+    showSerial(view, 'out', t, PRINTS, { board: BOARD });
+  },
+};
+
+export default cell;

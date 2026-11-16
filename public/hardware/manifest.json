@@ -1,0 +1,227 @@
+{
+  "pushbutton": {
+    "url": "hardware/pushbutton.svg",
+    "source": "frontend/public/component-svgs/pushbutton.svg",
+    "sha256": "683a3017904ff504b3f247c2af4f57c9ac32860d228e0f1a3be3f9498e42c06f"
+  },
+  "ky-020-tilt-switch": {
+    "url": "hardware/ky-020-tilt-switch.svg",
+    "source": "frontend/public/components-metadata.json#ky-020-tilt-switch.thumbnail",
+    "sha256": "335c840dd5ae093f8360759dbc37f74aa2fb1ed643dd2151e9cf7f00f8088fb2"
+  },
+  "ky-040": {
+    "url": "hardware/ky-040.svg",
+    "source": "frontend/public/components-metadata.json#ky-040.thumbnail",
+    "sha256": "637845ba667d19a7222ec80f9ef6938f564108479f9574f86a0d3584f1aeeac4"
+  },
+  "led": {
+    "url": "hardware/led.svg",
+    "source": "frontend/public/component-svgs/led.svg",
+    "sha256": "c5097859a357a730b0c816c0eb116d699c1dc21c531a7789f41f4ea54b2896bc"
+  },
+  "buzzer": {
+    "url": "hardware/buzzer.svg",
+    "source": "frontend/public/component-svgs/buzzer.svg",
+    "sha256": "a725132f52c190ce665c0aa704404207dcd24811ee186d0246c9c530c5c8501e"
+  },
+  "active-buzzer": {
+    "url": "hardware/active-buzzer.svg",
+    "source": "frontend/public/components-metadata.json#active-buzzer.thumbnail",
+    "sha256": "4d67d1342da0e9022727ae9385856da473361274268d57f25ca80daf21a4f5da"
+  },
+  "ky-008": {
+    "url": "hardware/ky-008.svg",
+    "source": "frontend/public/components-metadata.json#ky-008.thumbnail",
+    "sha256": "0d321ae5fe9ea48a8f2f9b71758dd607878f6d237bb4e48a0fab6b324ee091f7"
+  },
+  "relay-module": {
+    "url": "hardware/relay-module.svg",
+    "source": "frontend/public/components-metadata.json#relay-module.thumbnail",
+    "sha256": "758b43600eb8dbfa3d973a0867544dd1db3a2ce0506ef00a8b26902a80ee5073"
+  },
+  "drv2605l": {
+    "url": "hardware/drv2605l.svg",
+    "source": "frontend/public/component-svgs/drv2605l.svg",
+    "sha256": "13f5ceeabffd8f17517bb3a0784b95add195408179f409370b5de68e1352dfc1"
+  },
+  "joystick": {
+    "url": "hardware/joystick.svg",
+    "source": "frontend/public/components-metadata.json#joystick.thumbnail",
+    "sha256": "8a8f1ae1fdf6fa9923577e48b28367e99c387ac78d8d0eced0da31aa0c3278df"
+  },
+  "hc-sr04": {
+    "url": "hardware/hc-sr04.svg",
+    "source": "frontend/public/component-svgs/hc-sr04.svg",
+    "sha256": "2a7ada1031806d54126241f93930da43c4cc5697b6097aacae92383684eb099a"
+  },
+  "tmp36": {
+    "url": "hardware/tmp36.svg",
+    "source": "frontend/public/components-metadata.json#tmp36.thumbnail",
+    "sha256": "942d1d8746435e4559b0ce9138343b3aaf6bc47afbf777d16841c77da0274297"
+  },
+  "mpu6050": {
+    "url": "hardware/mpu6050.svg",
+    "source": "frontend/public/component-svgs/mpu6050.svg",
+    "sha256": "8bb6c4f711885afe41ea6635b3b6a119a83a525874a5c517fc81aabb2f456345"
+  },
+  "water-level-sensor": {
+    "url": "hardware/water-level-sensor.svg",
+    "source": "frontend/public/components-metadata.json#water-level-sensor.thumbnail",
+    "sha256": "372b3b007a78ca5b131ce2e945b7487bbacb96fb5f4ef5a48fb9f8b803586286"
+  },
+  "shock-sensor": {
+    "url": "hardware/shock-sensor.svg",
+    "source": "frontend/public/components-metadata.json#shock-sensor.thumbnail",
+    "sha256": "239516449f2180747da6346aa92ace0942f686f4dca50fa1f16a42895e5c4126"
+  },
+  "pir-motion-sensor": {
+    "url": "hardware/pir-motion-sensor.svg",
+    "source": "frontend/public/component-svgs/pir-motion-sensor.svg",
+    "sha256": "3648ad257c54bb9614d224b03937661cb1c288469f5e78301384d09af6aced0f"
+  },
+  "ky-018-photoresistor": {
+    "url": "hardware/ky-018-photoresistor.svg",
+    "source": "frontend/public/components-metadata.json#ky-018-photoresistor.thumbnail",
+    "sha256": "4d72d6a3b119d0d75bba9d227aa66f13f4433d6d3ba4faa20e081b880fd6d456"
+  },
+  "ds18b20": {
+    "url": "hardware/ds18b20.svg",
+    "source": "frontend/public/components-metadata.json#ds18b20.thumbnail",
+    "sha256": "6c119af7a8cd2fcaf6e0d3459e44fcd73cd60006644bdac4eef1f36e61feab45"
+  },
+  "bme280": {
+    "url": "hardware/bme280.svg",
+    "source": "frontend/public/components-metadata.json#bme280.thumbnail",
+    "sha256": "9fdae3639292d1d4577a648ea295b160ff77638623a455ef0e9b384e4da525e7"
+  },
+  "ds1307": {
+    "url": "hardware/ds1307.svg",
+    "source": "frontend/public/component-svgs/ds1307.svg",
+    "sha256": "dbbcb7d11d8de865a03c7561b3076f104e91f2cc825c749883d18c4ff56c5ed3"
+  },
+  "ky-038-sound-sensor": {
+    "url": "hardware/ky-038-sound-sensor.svg",
+    "source": "frontend/public/components-metadata.json#ky-038-sound-sensor.thumbnail",
+    "sha256": "8727a8d13a085d8360f002865c3453791987a741061302b35ae20b50b09dba9a"
+  },
+  "mq2": {
+    "url": "hardware/mq2.svg",
+    "source": "frontend/public/components-metadata.json#mq2.thumbnail",
+    "sha256": "2302206385965112f4fbb0d8365a4b2986b039e13b30898e0252f17990c4a85a"
+  },
+  "sen0244": {
+    "url": "hardware/sen0244.svg",
+    "source": "frontend/public/components-metadata.json#sen0244.thumbnail",
+    "sha256": "8260f9f57d300dfc2531da4765874ff755d244175a294be1e5b46ca07394ebd3"
+  },
+  "dht11": {
+    "url": "hardware/dht11.svg",
+    "source": "frontend/public/components-metadata.json#dht11.thumbnail",
+    "sha256": "729b413a288fed66d9a399ac62666f2632e1e9fc2ce6c2823ff738c86e8eea7a"
+  },
+  "pa1616s": {
+    "url": "hardware/pa1616s.svg",
+    "source": "frontend/public/component-svgs/pa1616s.svg",
+    "sha256": "a4e4f1b66013d719c29cf486cdccf5623e595f9f4b86884683a0de7b39adf8eb"
+  },
+  "vl53l0x": {
+    "url": "hardware/vl53l0x.svg",
+    "source": "frontend/public/component-svgs/vl53l0x.svg",
+    "sha256": "d2ebac674a7d8f86a86689660a9d5257cf19c18441935bbd347b8357b8264366"
+  },
+  "pmsa003i": {
+    "url": "hardware/pmsa003i.svg",
+    "source": "frontend/public/component-svgs/pmsa003i.svg",
+    "sha256": "89e3a11875e6a1c59b5e2200fc60bd3bb94559655c09a9d6beddaa25e73d2997"
+  },
+  "ltr390": {
+    "url": "hardware/ltr390.svg",
+    "source": "frontend/public/component-svgs/ltr390.svg",
+    "sha256": "dc3a2a98da015f82cece07c3e9e33b4f606de0f25bff16a30ea8abe5b68e6fb1"
+  },
+  "sgp40": {
+    "url": "hardware/sgp40.svg",
+    "source": "frontend/public/component-svgs/sgp40.svg",
+    "sha256": "f9d252a2e461c257b4ae10880216ab7324bc8b5099aa5293d424c89e136ad6e8"
+  },
+  "max32664": {
+    "url": "hardware/max32664.svg",
+    "source": "frontend/public/component-svgs/max32664.svg",
+    "sha256": "1fc9d8b9949c3daf368f74111fec05a30f9114d82aaf09d5ad210661c835c12b"
+  },
+  "hmc5883l": {
+    "url": "hardware/hmc5883l.svg",
+    "source": "frontend/public/component-svgs/hmc5883l.svg",
+    "sha256": "26f96086dc28048d24f3d8e3c33293f08f2e264263d610799edb2210a569226c"
+  },
+  "mlx90614": {
+    "url": "hardware/mlx90614.svg",
+    "source": "frontend/public/component-svgs/mlx90614.svg",
+    "sha256": "341428a1267aea3cc317a6b7d86be4a8ad0ac301a97391fbcf2d044120044a50"
+  },
+  "max17048": {
+    "url": "hardware/max17048.svg",
+    "source": "frontend/public/component-svgs/max17048.svg",
+    "sha256": "1b241adbaf6c369541c81ff351843c199fc082754f2e3e24025ab10c1650809b"
+  },
+  "amg8833": {
+    "url": "hardware/amg8833.svg",
+    "source": "frontend/public/component-svgs/amg8833.svg",
+    "sha256": "c2dc9775e590c15e271510c446ffb4f1cca7ad18d59cfffb0911cc5e129fd03e"
+  },
+  "mpr121": {
+    "url": "hardware/mpr121.svg",
+    "source": "frontend/public/component-svgs/mpr121.svg",
+    "sha256": "a525d0b62a2bd2ddcdced21f1366a7fd4463eb1985de8463fafc8be7805a5f57"
+  },
+  "l298n": {
+    "url": "hardware/l298n.svg",
+    "source": "frontend/public/components-metadata.json#l298n.thumbnail",
+    "sha256": "07ce8705ada2971fe54f9e79e09dd532a3e7ab83f8580491a50e96a0a87df058"
+  },
+  "line-sensor": {
+    "url": "hardware/line-sensor.svg",
+    "source": "frontend/public/component-svgs/line-sensor.svg",
+    "sha256": "62bca21ead6e48cd2f5c3bdc04ebccc6113ec4c552d4128f2c66289b5df3fd60"
+  },
+  "power-supply": {
+    "url": "hardware/power-supply.svg",
+    "source": "frontend/public/components-metadata.json#power-supply.thumbnail",
+    "sha256": "0ac80ca2a761d54c54af95e38ea7babc465bcc852c0064858cd9da715a3e2143"
+  },
+  "level-shifter": {
+    "url": "hardware/level-shifter.svg",
+    "source": "frontend/public/component-svgs/level-shifter.svg",
+    "sha256": "42eb786d9ad212369a41e65016e522d4ab51f00917f9c1d653c98661914e62cf"
+  },
+  "wifi": {
+    "url": "hardware/wifi.svg",
+    "source": "frontend/public/components-metadata.json#wifi.thumbnail",
+    "sha256": "5a548c1b17401fdaa74f2df3d12a011aafe885205687a3d5f2c010bac12752a5"
+  },
+  "ble": {
+    "url": "hardware/ble.svg",
+    "source": "frontend/public/components-metadata.json#ble.thumbnail",
+    "sha256": "2b30af7a2799a56afd7be5672d9b5d2b7f95d19aa816a3dc42a426b9b86bb277"
+  },
+  "hm10": {
+    "url": "hardware/hm10.svg",
+    "source": "frontend/public/component-svgs/hm10.svg",
+    "sha256": "4b01dbff8c61ce815536b7edc0bf04f7aa286c3e0730b8ca01609134f8b4feb6"
+  },
+  "arduino-uno": {
+    "url": "hardware/arduino-uno.svg",
+    "source": "frontend/public/boards/arduino-uno.svg",
+    "sha256": "47445a5996507f63e1d39567d104ed35447fc06cadefcac4fbbdee5e120b94d2"
+  },
+  "arduino-mega": {
+    "url": "hardware/arduino-mega.svg",
+    "source": "frontend/public/boards/arduino-mega.svg",
+    "sha256": "a69b4b43dfeca69911c8358f281328417f55ec0b43e8761a497f5b403001b37d"
+  },
+  "esp32-s3": {
+    "url": "hardware/esp32-s3.svg",
+    "source": "frontend/public/boards/esp32-s3.svg",
+    "sha256": "429025cd85ad0b2fa73fca63bf2558d0016aba787e6be0119bedf44c0172ae5d"
+  }
+}

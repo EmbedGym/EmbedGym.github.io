@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.DS_Store
+
+# Local configuration and preview captures
+.env
+.env.*
+!.env.example
+*.log
+theme-preview*.jpg
+research-preview*.jpg
+__pycache__/

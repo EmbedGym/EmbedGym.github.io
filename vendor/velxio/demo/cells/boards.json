@@ -1,0 +1,6 @@
+{
+  "mega": { "label": "Arduino Mega", "target": "atmega2560_arduino" },
+  "uno": { "label": "Arduino Uno", "target": "atmega328p_arduino" },
+  "esp32s3": { "label": "ESP32-S3", "target": "esp32s3_espidf", "twin": "esp32s3_arduino" },
+  "nrf52840": { "label": "nRF52840 DK", "target": "nrf52840_zephyr", "twin": "nrf52840_arduino" }
+}

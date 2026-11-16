@@ -1,0 +1,39 @@
+{
+  "name": "embed_gym_website",
+  "version": "1.0.0",
+  "description": "EmbedGym research website and white academic theme preview",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/EmbedGym/EmbedGym.github.io.git"
+  },
+  "engines": {
+    "node": ">=24.22.2 <25"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "check:astryx": "astryx doctor --built dist && astryx doctor --built dist/assets",
+    "check:theme": "astryx theme build src/themes/academic/academicTheme.ts --check"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@astryxdesign/cli": "^0.7.14",
+    "@astryxdesign/core": "^0.7.14",
+    "@astryxdesign/theme-neutral": "^0.7.14",
+    "@stylexjs/stylex": "^0.19.2",
+    "@wokwi/elements": "^1.9.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8"
+  }
+}
