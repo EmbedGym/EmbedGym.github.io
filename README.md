@@ -32,26 +32,19 @@ local preview screenshots are not website artifacts.
 
 `.github/workflows/pages.yml` runs a locked dependency install, generated theme
 freshness check, TypeScript/build, and Astryx doctor on main pushes and PRs.
-Deployment is manual while the website is still a preview. The workflow's
-action revisions are pinned; Node is selected from `.nvmrc`.
+Successful pushes to `main` deploy only the generated `dist/` artifact. Manual
+workflow dispatch can also redeploy `main`; pull requests never deploy.
+The action revisions are pinned; Node is selected from `.nvmrc`.
 
-When the website is ready to publish:
+In **Settings → Pages → Build and deployment**, **Source** must be **GitHub Actions**.
+Do not publish the `main` branch root: its `index.html` is a Vite development entry
+that imports `/src/main.tsx`. Serving that file directly causes a module MIME error
+and a blank page. The production HTML references compiled `/assets/*.js` instead.
 
-1. Review and commit the intended source files when ready.
-2. In the repository's **Settings → Pages → Build and deployment**, set
-   **Source** to **GitHub Actions**. This remote setting was not changed during
-   local setup. Switch the source before the first source push if the existing
-   branch-based placeholder must not be replaced by unbuilt Vite source.
-3. Push the reviewed source when authorized; this runs the validation job.
-4. In **Actions → Website checks and Pages deployment → Run workflow**, select
-   `main`. The deploy job runs only for this manual event on `main` and only
-   after all build steps succeed. It uses GitHub's built-in token; no personal
-   access token or SSH private key belongs in the workflow.
-
-Pushes alone do not deploy through this workflow. GitHub Pages is static
-hosting: future real-time QEMU/Renode sessions need a separate backend. Future
-client-side routing must use static page outputs or hash routes unless a Pages
-fallback strategy is explicitly added.
+After an authorized push, wait for **Website checks and Pages deployment** to
+complete both the build and deploy jobs. Verify that the live page loads its
+compiled JavaScript with a JavaScript MIME type. Pages is static hosting; real-time
+QEMU/Renode sessions need a separate backend. The site uses hash routes.
 
 References: [Vite Pages deployment](https://vite.dev/guide/static-deploy.html#github-pages)
 and [GitHub Pages publishing sources](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).

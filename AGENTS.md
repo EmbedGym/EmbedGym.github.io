@@ -4,7 +4,7 @@ Project-specific guidance for AI coding agents.
 
 ## EmbedGym website direction
 
-- Repository: `git@github.com:EmbedGym/EmbedGym.github.io.git`; local `main` tracks `origin/main`. Do not push or publish until Scott explicitly requests it. The local Pages workflow deploys only by manual dispatch on `main`.
+- Repository: `git@github.com:EmbedGym/EmbedGym.github.io.git`; local `main` tracks `origin/main`. Do not push or publish until Scott explicitly requests it. Authorized pushes to `main` build and deploy `dist` through GitHub Actions; pull requests only validate. Pages must use the GitHub Actions source, never the repository root.
 - The site is in English; planning with Scott is in Chinese.
 - Editorial priority: concise research showcase, interaction first. No long explanatory paragraphs on overview/catalog/dashboard surfaces. Keep only a short title, a one-line caption when necessary, and controls. Put methodology, provenance, implementation notes, detailed prompts and raw logs behind deliberate disclosure or on detail views.
 - Every figure and table must be interactive: selection, comparison, filtering, sorting, playback or linked inspection must change useful visible content. A decorative hover effect does not count. Avoid static illustrations/tables as the main experience. Build live hardware interactions prominently.

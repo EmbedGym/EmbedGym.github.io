@@ -37,14 +37,14 @@ jobs:
         run: npm run check:astryx
 
       - name: Upload Pages artifact
-        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
         with:
           path: dist
 
   deploy:
-    # Pushes and PRs only validate. Publish deliberately from Actions on main.
-    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    # Main pushes publish the validated dist artifact; PRs only run checks.
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 10
